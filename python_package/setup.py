@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='calcpack',
+    name='calcmod',
     version='0.1',
     description='A simple calc Python package',
     author='ampLe',
