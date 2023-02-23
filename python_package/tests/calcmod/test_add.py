@@ -3,7 +3,7 @@ import unittest.mock
 
 class Add(unittest.TestCase):
     def test_add(self):
-        pass
+        assert False
 
 
 if __name__ == '__main__':
