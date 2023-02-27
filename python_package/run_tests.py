@@ -30,11 +30,15 @@ def create_summary(test_result):
 
 
 def print_tests_summary(result_summary):
+    number_of_tests = result_summary["number_of_tests"]
     number_of_failed_tests = len(result_summary["details"]["failed"])
     number_of_skipped_tests = len(result_summary["details"]["skipped"])
     number_of_passed_tests = result_summary["number_of_tests"] - number_of_failed_tests - number_of_skipped_tests
 
-    print("Ran {} tests. {} passed, {} failed".format(number_of_passed_tests, number_of_failed_tests, number_of_skipped_tests))
+    print("Tests {}".format(number_of_tests))
+    print("  Passed  {}".format(number_of_passed_tests))
+    print("  Failed  {}".format(number_of_failed_tests))
+    print("  Skipped {}".format(number_of_skipped_tests))
 
 
 def print_details_of_failed_tests(test_result):
