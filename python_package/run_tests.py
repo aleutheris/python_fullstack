@@ -1,9 +1,10 @@
 import unittest
 import os
+import sys
 
 
 def run_tests():
-    start_folder = os.path.dirname(__file__)
+    start_folder = os.path.dirname(os.path.abspath(__file__))
     test_loader = unittest.TestLoader()
 
     test_suite = test_loader.discover(start_dir=start_folder+'/tests', pattern='test_*.py', top_level_dir=start_folder)
