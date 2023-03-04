@@ -1,4 +1,4 @@
-import unittest.mock
+import unittest
 from calcpack import Expmod
 
 
