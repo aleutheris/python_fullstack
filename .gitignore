@@ -1,0 +1,25 @@
+# Local environment
+python_back/.venv/
+python_back/.vscode/
+python_back/.idea/
+python_package/.venv/
+python_package/.vscode/
+python_package/.idea/
+
+# Builds
+build/
+calcmod.egg-info/
+
+# Doxygen outputs
+doxygen_output/
+doc/.directory
+
+# Local files
+*.csv
+*.ods
+*.jpg
+*.xlsx
+*.txt
+*.pyc
+*.json
+*.pkl
