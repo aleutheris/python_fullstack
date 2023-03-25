@@ -1,66 +1,64 @@
-const server_url = "http://localhost:5000";
+(function () {
+  "use strict";
 
-const button = document.getElementById("get-data-button");
+  var app = angular.module("pyApp", []);
 
-const add_div = document.getElementById("add");
-const sub_div = document.getElementById("sub");
-const mul_div = document.getElementById("mul");
-const div_div = document.getElementById("div");
-const exp_div = document.getElementById("exp");
+  var pyController = function ($scope, $http) {
+    const server_url = "http://localhost:5000";
 
+    $scope.calculate = function () {
+      const url_add = `${server_url}/add/${$scope.number1}/${$scope.number2}`;
+      const url_sub = `${server_url}/sub/${$scope.number1}/${$scope.number2}`;
+      const url_mul = `${server_url}/mul/${$scope.number1}/${$scope.number2}`;
+      const url_div = `${server_url}/div/${$scope.number1}/${$scope.number2}`;
+      const url_exp = `${server_url}/exp/${$scope.number1}/${$scope.number2}`;
 
-button.addEventListener("click", function() {
-  const value1 = document.getElementById("value1").value;
-  const value2 = document.getElementById("value2").value;
+      $scope.calcTable = [
+        { add: 0, sub: 0, mul: 0, div: 0, exp: 0 }
+      ];
 
-  const url_add = `${server_url}/add/${value1}/${value2}`;
-  const url_sub = `${server_url}/sub/${value1}/${value2}`;
-  const url_mul = `${server_url}/mul/${value1}/${value2}`;
-  const url_div = `${server_url}/div/${value1}/${value2}`;
-  const url_exp = `${server_url}/exp/${value1}/${value2}`;
+      $http.get(url_add)
+        .then(function(response) {
+          $scope.calcTable[0].add = response.data.result;
+        }, function(error) {
+          console.log(error);
+        });
 
-  fetch(url_add)
-    .then(response => response.json())
-    .then(data => {
-      add_div.innerHTML = JSON.stringify(data["result"]);
-    })
-    .catch(error => {
-      add_div.innerHTML = "Error: " + error;
-    });
+      $http.get(url_sub)
+        .then(function(response) {
+          $scope.calcTable[0].sub = response.data.result;
+        }
+        , function(error) {
+          console.log(error);
+        });
 
-  fetch(url_sub)
-    .then(response => response.json())
-    .then(data => {
-      sub_div.innerHTML = JSON.stringify(data["result"]);
-    })
-    .catch(error => {
-      sub_div.innerHTML = "Error: " + error;
-    });
+      $http.get(url_mul)
+        .then(function(response) {
+          $scope.calcTable[0].mul = response.data.result;
+        }
+        , function(error) {
+          console.log(error);
+        });
 
-  fetch(url_mul)
-    .then(response => response.json())
-    .then(data => {
-      mul_div.innerHTML = JSON.stringify(data["result"]);
-    })
-    .catch(error => {
-      mul_div.innerHTML = "Error: " + error;
-    });
+      $http.get(url_div)
+        .then(function(response) {
+          $scope.calcTable[0].div = response.data.result;
+        }
+        , function(error) {
+          console.log(error);
+        }
+      );
 
-  fetch(url_div)
-    .then(response => response.json())
-    .then(data => {
-      div_div.innerHTML = JSON.stringify(data["result"]);
-    })
-    .catch(error => {
-      div_div.innerHTML = "Error: " + error;
-    });
+      $http.get(url_exp)
+        .then(function(response) {
+          $scope.calcTable[0].exp = response.data.result;
+        }
+        , function(error) {
+          console.log(error);
+        }
+      );
+    };
+  };
 
-  fetch(url_exp)
-    .then(response => response.json())
-    .then(data => {
-      exp_div.innerHTML = JSON.stringify(data["result"]);
-    })
-    .catch(error => {
-      exp_div.innerHTML = "Error: " + error;
-    });
-});
+  app.controller("pyController", ["$scope", "$http", pyController]);
+})();
