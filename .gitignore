@@ -1,7 +1,10 @@
 # Local environment
+js_front/.idea/
+
 python_back/.venv/
 python_back/.vscode/
 python_back/.idea/
+
 python_package/.venv/
 python_package/.vscode/
 python_package/.idea/
